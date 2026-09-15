@@ -13,6 +13,7 @@ import {
 const emptyData: AppData = {
   players: [],
   fines: [],
+  foodDuties: [],
 };
 
 export function useData() {

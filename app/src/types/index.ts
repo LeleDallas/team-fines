@@ -13,5 +13,10 @@ export type Fine = {
   notes?: string;
 };
 
+export type FoodDuty = {
+  date: string;
+  playerNames: string[];
+};
+
 export type Page = "dashboard" | "fines" | "players" | "calendar" | "regolamento";
 export type FineFilter = "all" | "pending" | "paid";

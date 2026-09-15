@@ -1,4 +1,4 @@
-import type { Player } from "../types";
+import type { FoodDuty, Player } from "../types";
 
 export type CalendarDay = {
   date: Date;
@@ -7,18 +7,28 @@ export type CalendarDay = {
   foodDuty: Player[];
 };
 
-export function getTuesdayFoodDuty<T extends { name: string }>(players: T[], date: Date): T[] {
-  if (players.length === 0 || date.getDay() !== 2) {
+export function getTuesdayFoodDuty<T extends { name: string }>(
+  players: T[],
+  foodDuties: FoodDuty[],
+  date: Date,
+): T[] {
+  if (date.getDay() !== 2) {
     return [];
   }
 
-  const count = Math.floor((date.getDate() - 1) / 7) % 2 === 0 ? 2 : 1;
-  const startIndex = (date.getFullYear() * 12 + date.getMonth() + Math.floor((date.getDate() - 1) / 7)) % players.length;
+  const dateKey = formatDateKey(date);
+  const duty = foodDuties.find((item) => item.date === dateKey);
 
-  return Array.from({ length: count }, (_, index) => players[(startIndex + index) % players.length]);
+  if (!duty) {
+    return [];
+  }
+
+  return duty.playerNames
+    .map((name) => players.find((player) => player.name === name))
+    .filter((player): player is T => Boolean(player));
 }
 
-export function getCalendarMonthDays(players: Player[], month: Date): CalendarDay[] {
+export function getCalendarMonthDays(players: Player[], foodDuties: FoodDuty[], month: Date): CalendarDay[] {
   const monthStart = new Date(month.getFullYear(), month.getMonth(), 1);
   const firstWeekday = (monthStart.getDay() + 6) % 7;
   const gridStart = new Date(monthStart);
@@ -31,7 +41,7 @@ export function getCalendarMonthDays(players: Player[], month: Date): CalendarDa
     date.setDate(gridStart.getDate() + index);
 
     const birthdays = players.filter((player) => isBirthdayOnDate(player, date));
-    const foodDuty = getTuesdayFoodDuty(players, date);
+    const foodDuty = getTuesdayFoodDuty(players, foodDuties, date);
 
     days.push({
       date,
@@ -42,6 +52,10 @@ export function getCalendarMonthDays(players: Player[], month: Date): CalendarDa
   }
 
   return days;
+}
+
+export function formatDateKey(date: Date) {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
 }
 
 function isBirthdayOnDate(player: Player, date: Date) {

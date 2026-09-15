@@ -1,8 +1,9 @@
-import type { Fine, Player } from "../types";
+import type { Fine, FoodDuty, Player } from "../types";
 
 export type AppData = {
   players: Player[];
   fines: Fine[];
+  foodDuties: FoodDuty[];
 };
 
 const DATA_URL = import.meta.env.VITE_DATA_URL || `${import.meta.env.BASE_URL}data.json`;
@@ -42,7 +43,13 @@ export async function fetchData(): Promise<AppData> {
     throw new Error("Impossibile caricare i dati");
   }
 
-  return response.json();
+  const data = (await response.json()) as Partial<AppData>;
+
+  return {
+    players: data.players ?? [],
+    fines: data.fines ?? [],
+    foodDuties: data.foodDuties ?? [],
+  };
 }
 
 export async function uploadData(

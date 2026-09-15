@@ -12,12 +12,14 @@ import { FineModal } from "./components/fines/FineModal";
 import { PlayerModal } from "./components/players/PlayerModal";
 import { AdminPasswordModal } from "./components/ui/AdminPasswordModal";
 
-import type { Fine, FineFilter, Page, Player } from "./types";
+import type { Fine, FineFilter, FoodDuty, Page, Player } from "./types";
 import { fetchData, loginAdmin, uploadData } from "./api/api";
 
 function App() {
   const [players, setPlayers] = useState<Player[]>([]);
   const [fines, setFines] = useState<Fine[]>([]);
+
+  const [foodDuties, setFoodDuties] = useState<FoodDuty[]>([]);
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -132,7 +134,7 @@ function App() {
       setSaving(true);
       setSaveError(null);
 
-      await uploadData({ players, fines }, adminToken);
+      await uploadData({ players, fines, foodDuties }, adminToken);
       setDirty(false);
     } catch (error) {
       console.error(error);
@@ -175,6 +177,7 @@ function App() {
 
       setPlayers(data.players);
       setFines(data.fines);
+      setFoodDuties(data.foodDuties);
     } catch (error) {
       console.error(error);
       setError("Impossibile caricare i dati");
@@ -185,6 +188,19 @@ function App() {
 
   loadData();
 }, []);
+
+  const addFoodDuty = (duty: FoodDuty) => {
+    setFoodDuties((current) => [
+      ...current.filter((item) => item.date !== duty.date),
+      duty,
+    ]);
+    setDirty(true);
+  };
+
+  const removeFoodDuty = (date: string) => {
+    setFoodDuties((current) => current.filter((duty) => duty.date !== date));
+    setDirty(true);
+  };
 
   return (
     <div className="app-shell">
@@ -256,7 +272,15 @@ function App() {
             <PlayersPage players={players} fines={fines} onAdd={() => setPlayerModalOpen(true)} />
           )}
 
-          {!loading && !error && page === "calendar" && <CalendarPage players={players} />}
+          {!loading && !error && page === "calendar" && (
+            <CalendarPage
+              players={players}
+              foodDuties={foodDuties}
+              isAdmin={Boolean(adminToken)}
+              onAddFoodDuty={addFoodDuty}
+              onRemoveFoodDuty={removeFoodDuty}
+            />
+          )}
 
           {!loading && !error && page === "regolamento" && <RegolamentoPage />}
         </div>

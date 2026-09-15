@@ -1,16 +1,22 @@
 import { useMemo, useState } from "react";
 
 import type { Player } from "../../types";
+import type { FoodDuty } from "../../types";
 import { getCalendarMonthDays } from "../../utils/calendar";
+import { FoodDutyForm } from "./FoodDutyForm";
 
 type Props = {
   players: Player[];
+  foodDuties: FoodDuty[];
+  isAdmin: boolean;
+  onAddFoodDuty: (duty: FoodDuty) => void;
+  onRemoveFoodDuty: (date: string) => void;
 };
 
-export function CalendarPage({ players }: Props) {
+export function CalendarPage({ players, foodDuties, isAdmin, onAddFoodDuty, onRemoveFoodDuty }: Props) {
   const [month, setMonth] = useState(() => new Date(new Date().getFullYear(), new Date().getMonth(), 1));
 
-  const days = useMemo(() => getCalendarMonthDays(players, month), [players, month]);
+  const days = useMemo(() => getCalendarMonthDays(players, foodDuties, month), [players, foodDuties, month]);
 
   const monthLabel = month.toLocaleDateString("it-IT", {
     month: "long",
@@ -45,6 +51,15 @@ export function CalendarPage({ players }: Props) {
           </button>
         </div>
       </div>
+
+      {isAdmin && (
+        <FoodDutyForm
+          players={players}
+          foodDuties={foodDuties}
+          onAdd={onAddFoodDuty}
+          onRemove={onRemoveFoodDuty}
+        />
+      )}
 
       <div className="calendar-legend">
         <span>

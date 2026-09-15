@@ -799,6 +799,95 @@ h1 {
   padding-bottom: 16px;
 }
 
+.food-duty-manager {
+  display: grid;
+  gap: 14px;
+  margin: 16px 20px 8px;
+  padding: 16px;
+  border: 1px solid #feddc6;
+  border-radius: 12px;
+  background: #fffaf5;
+}
+
+.food-duty-manager > div:first-child {
+  display: grid;
+  gap: 3px;
+}
+
+.food-duty-manager > div:first-child span {
+  color: #7b8497;
+  font-size: 12px;
+}
+
+.food-duty-form {
+  display: grid;
+  grid-template-columns: 170px 1fr auto;
+  gap: 12px;
+  align-items: end;
+}
+
+.food-duty-form label:first-child {
+  display: grid;
+  gap: 5px;
+  color: #697487;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.food-duty-form input[type="date"] {
+  min-height: 38px;
+  border: 1px solid #e1e5ec;
+  border-radius: 8px;
+  padding: 0 9px;
+  color: #273044;
+  background: white;
+}
+
+.food-duty-players {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.food-duty-player {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 32px;
+  padding: 5px 8px;
+  border: 1px solid #f2d6bd;
+  border-radius: 8px;
+  color: #694b2a;
+  background: white;
+  font-size: 11px;
+}
+
+.food-duty-list {
+  display: grid;
+  gap: 6px;
+}
+
+.food-duty-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 7px;
+  border-top: 1px solid #f3dfcf;
+  color: #697487;
+  font-size: 12px;
+}
+
+.food-duty-row span {
+  display: flex;
+  gap: 10px;
+}
+
+.food-duty-row strong {
+  color: #9a5b06;
+}
+
 .calendar-nav {
   display: flex;
   align-items: center;
@@ -1268,6 +1357,23 @@ h1 {
   .calendar-nav strong {
     min-width: 0;
     flex: 1;
+  }
+
+  .food-duty-form {
+    grid-template-columns: 1fr;
+  }
+
+  .food-duty-form .primary-btn {
+    justify-content: center;
+  }
+
+  .food-duty-row {
+    align-items: flex-start;
+  }
+
+  .food-duty-row span {
+    flex-direction: column;
+    gap: 2px;
   }
 
   .calendar-day {
