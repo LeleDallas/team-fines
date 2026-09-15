@@ -13,7 +13,7 @@ export async function loginAdmin(password: string): Promise<string> {
     throw new Error("URL del Worker non configurato");
   }
 
-  const response = await fetch(`${API_URL}/api/auth`, {
+  const response = await fetch(`${API_URL}api/auth`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ password }),
@@ -53,7 +53,7 @@ export async function uploadData(
     throw new Error("URL del Worker non configurato");
   }
 
-  const response = await fetch(`${API_URL}/api/data`, {
+  const response = await fetch(`${API_URL}api/data`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
