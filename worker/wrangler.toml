@@ -1,0 +1,12 @@
+name = "team-fines-data"
+main = "src/index.ts"
+compatibility_date = "2026-09-15"
+
+[vars]
+GITHUB_OWNER = "LeleDallas"
+GITHUB_REPO = "team-fines"
+GITHUB_BRANCH = "main"
+GITHUB_FILE = "cdn/data.json"
+GITHUB_BOT_NAME = "team-fines-bot"
+GITHUB_BOT_EMAIL = "team-fines-bot@users.noreply.github.com"
+ALLOWED_ORIGIN = "https://leledallas.github.io"

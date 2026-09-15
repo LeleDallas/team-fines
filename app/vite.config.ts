@@ -4,6 +4,7 @@ import { defineConfig } from 'vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/team-fines/',
   plugins: [
     react(),
     babel({ presets: [reactCompilerPreset()] })
