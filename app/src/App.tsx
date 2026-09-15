@@ -10,10 +10,10 @@ import { RegolamentoPage } from "./components/regolamento/RegolamentoPage";
 
 import { FineModal } from "./components/fines/FineModal";
 import { PlayerModal } from "./components/players/PlayerModal";
-import { Toast } from "./components/ui/Toast";
+import { AdminPasswordModal } from "./components/ui/AdminPasswordModal";
 
 import type { Fine, FineFilter, Page, Player } from "./types";
-import { fetchData } from "./api/api";
+import { fetchData, loginAdmin, uploadData } from "./api/api";
 
 function App() {
   const [players, setPlayers] = useState<Player[]>([]);
@@ -36,7 +36,19 @@ function App() {
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const [toast, setToast] = useState("");
+  const [dirty, setDirty] = useState(false);
+
+  const [saving, setSaving] = useState(false);
+
+  const [saveError, setSaveError] = useState<string | null>(null);
+
+  const [adminToken, setAdminToken] = useState<string | null>(null);
+
+  const [adminModalOpen, setAdminModalOpen] = useState(false);
+
+  const [adminLoginError, setAdminLoginError] = useState<string | null>(null);
+
+  const [adminTapCount, setAdminTapCount] = useState(0);
 
   const pendingFines = useMemo(() => fines.filter((fine) => fine.status === "pending"), [fines]);
 
@@ -68,10 +80,12 @@ function App() {
 
   const addFine = (fine: Fine) => {
     setFines((current) => [fine, ...current]);
+    setDirty(true);
   };
 
   const updateFine = (updated: Fine) => {
     setFines((current) => current.map((fine) => (sameFine(fine, editingFine!) ? updated : fine)));
+    setDirty(true);
   };
 
   const saveFine = (fine: Fine) => {
@@ -96,6 +110,7 @@ function App() {
           : fine,
       ),
     );
+    setDirty(true);
   };
 
   const deleteFine = (target: Fine) => {
@@ -104,6 +119,41 @@ function App() {
     }
 
     setFines((current) => current.filter((fine) => !sameFine(fine, target)));
+    setDirty(true);
+  };
+
+  const saveChanges = async () => {
+    if (!adminToken) {
+      setAdminModalOpen(true);
+      return;
+    }
+
+    try {
+      setSaving(true);
+      setSaveError(null);
+
+      await uploadData({ players, fines }, adminToken);
+      setDirty(false);
+    } catch (error) {
+      console.error(error);
+      setSaveError(error instanceof Error ? error.message : "Impossibile salvare i dati");
+      if (error instanceof Error && error.message === "Password amministratore non valida") {
+        setAdminToken(null);
+        setAdminModalOpen(true);
+      }
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleAdminTap = () => {
+    const nextCount = adminTapCount + 1;
+    setAdminTapCount(nextCount);
+
+    if (nextCount >= 5) {
+      setAdminTapCount(0);
+      setAdminModalOpen(true);
+    }
   };
 
   const openNewFine = () => {
@@ -114,14 +164,6 @@ function App() {
   const openEditFine = (fine: Fine) => {
     setEditingFine(fine);
     setFineModalOpen(true);
-  };
-
-  const notify = (message: string) => {
-    setToast(message);
-
-    window.setTimeout(() => {
-      setToast("");
-    }, 2500);
   };
 
   useEffect(() => {
@@ -156,13 +198,25 @@ function App() {
           setPage(nextPage);
           setSidebarOpen(false);
         }}
+        onAdminTap={handleAdminTap}
       />
 
       <main className="main">
-        <Topbar page={page} onMenu={() => setSidebarOpen((open) => !open)} />
+          <Topbar
+            page={page}
+            onMenu={() => setSidebarOpen((open) => !open)}
+            dirty={dirty}
+            saving={saving}
+            saveError={saveError}
+            onSave={saveChanges}
+          />
 
         <div className="content">
-          {page === "dashboard" && (
+          {loading && <p>Caricamento dati...</p>}
+
+          {!loading && error && <p>{error}</p>}
+
+          {!loading && !error && page === "dashboard" && (
             <Dashboard
               players={players}
               fines={fines}
@@ -179,7 +233,7 @@ function App() {
             />
           )}
 
-          {page === "fines" && (
+          {!loading && !error && page === "fines" && (
             <FinesPage
               fines={visibleFines}
               pendingFines={pendingFines}
@@ -198,13 +252,13 @@ function App() {
             />
           )}
 
-          {page === "players" && (
+          {!loading && !error && page === "players" && (
             <PlayersPage players={players} fines={fines} onAdd={() => setPlayerModalOpen(true)} />
           )}
 
-          {page === "calendar" && <CalendarPage players={players} />}
+          {!loading && !error && page === "calendar" && <CalendarPage players={players} />}
 
-          {page === "regolamento" && <RegolamentoPage />}
+          {!loading && !error && page === "regolamento" && <RegolamentoPage />}
         </div>
       </main>
 
@@ -225,12 +279,34 @@ function App() {
           onClose={() => setPlayerModalOpen(false)}
           onSave={(player) => {
             setPlayers((current) => [...current, player]);
+            setDirty(true);
 
             setPlayerModalOpen(false);
           }}
         />
       )}
-      {toast && <Toast message={toast} />}
+
+      {adminModalOpen && (
+        <AdminPasswordModal
+          error={adminLoginError}
+          onClose={() => {
+            setAdminModalOpen(false);
+            setAdminLoginError(null);
+          }}
+          onUnlock={async (password) => {
+            try {
+              const token = await loginAdmin(password);
+              setAdminToken(token);
+              setAdminModalOpen(false);
+              setAdminLoginError(null);
+              setSaveError(null);
+            } catch (error) {
+              setAdminLoginError(error instanceof Error ? error.message : "Impossibile effettuare il login");
+              throw error;
+            }
+          }}
+        />
+      )}
     </div>
   );
 }

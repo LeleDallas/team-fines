@@ -173,6 +173,14 @@ button {
   gap: 10px;
   align-items: center;
   margin-bottom: 22px;
+  width: 100%;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.team-card:hover {
+  border-color: #704049;
 }
 
 .team-ball {
@@ -267,6 +275,13 @@ button {
   backdrop-filter: blur(10px);
 }
 
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-width: 0;
+}
+
 .breadcrumb {
   display: flex;
   align-items: center;
@@ -277,6 +292,28 @@ button {
 
 .breadcrumb strong {
   color: #273044;
+}
+
+.save-error {
+  color: var(--red);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.save-btn:disabled {
+  cursor: default;
+  opacity: 0.72;
+  box-shadow: none;
+}
+
+.spin {
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .top-actions {
@@ -425,6 +462,13 @@ h1 {
   font-weight: 750;
   font-size: 13px;
   white-space: nowrap;
+}
+
+.form-error {
+  margin: 0;
+  color: var(--red);
+  font-size: 13px;
+  font-weight: 700;
 }
 
 .primary-btn {

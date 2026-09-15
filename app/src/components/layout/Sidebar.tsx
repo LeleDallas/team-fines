@@ -7,9 +7,10 @@ type Props = {
   open: boolean;
   pendingCount: number;
   onNavigate: (page: Page) => void;
+  onAdminTap: () => void;
 };
 
-export function Sidebar({ page, open, pendingCount, onNavigate }: Props) {
+export function Sidebar({ page, open, pendingCount, onNavigate, onAdminTap }: Props) {
   const navigate = (nextPage: Page) => {
     onNavigate(nextPage);
   };
@@ -72,13 +73,13 @@ export function Sidebar({ page, open, pendingCount, onNavigate }: Props) {
       </nav>
 
       <div className="sidebar-bottom">
-        <div className="team-card">
+        <button className="team-card" onClick={onAdminTap} type="button">
           <div className="team-ball">⚽</div>
 
           <div>
             <strong>Stagione 2026/27</strong>
           </div>
-        </div>
+        </button>
       </div>
     </aside>
   );
