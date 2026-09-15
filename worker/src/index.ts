@@ -14,11 +14,13 @@ const SESSION_TTL_SECONDS = 8 * 60 * 60;
 
 type GitHubContent = {
   sha: string;
+  content?: string;
 };
 
 type AppData = {
   players: unknown[];
   fines: unknown[];
+  foodDuties: unknown[];
 };
 
 export default {
@@ -44,8 +46,8 @@ export default {
     try {
       await verifySession(request, env);
 
-      const data = await readData(request);
       const current = await getCurrentFile(env);
+      const data = await readData(request, current);
       const content = encodeBase64(JSON.stringify(data, null, 2) + "\n");
       const githubResponse = await fetch(
         `https://api.github.com/repos/${env.GITHUB_OWNER}/${env.GITHUB_REPO}/contents/${env.GITHUB_FILE}`,
@@ -72,7 +74,11 @@ export default {
       if (!githubResponse.ok) {
         const details = await githubResponse.text();
         console.error("GitHub update failed", githubResponse.status, details);
-        return json({ error: "GitHub update failed" }, githubResponse.status, env);
+        return json(
+          { error: "GitHub ha rifiutato il salvataggio: verifica il token GITHUB_TOKEN" },
+          502,
+          env,
+        );
       }
 
       return json({ ok: true }, 200, env);
@@ -147,17 +153,38 @@ function toBase64Url(bytes: Uint8Array): string {
   return btoa(binary).replaceAll("+", "-").replaceAll("/", "_").replaceAll("=", "");
 }
 
-async function readData(request: Request): Promise<AppData> {
+async function readData(request: Request, current: GitHubContent): Promise<AppData> {
   const data = (await request.json()) as Partial<AppData>;
 
   if (!Array.isArray(data.players) || !Array.isArray(data.fines)) {
     throw new Error("Invalid data shape");
   }
 
+  const currentData = decodeCurrentData(current.content);
+
   return {
     players: data.players,
     fines: data.fines,
+    foodDuties: Array.isArray(data.foodDuties) ? data.foodDuties : currentData.foodDuties,
   };
+}
+
+function decodeCurrentData(content?: string): AppData {
+  if (!content) {
+    return { players: [], fines: [], foodDuties: [] };
+  }
+
+  try {
+    const decoded = JSON.parse(atob(content.replaceAll("\n", ""))) as Partial<AppData>;
+
+    return {
+      players: Array.isArray(decoded.players) ? decoded.players : [],
+      fines: Array.isArray(decoded.fines) ? decoded.fines : [],
+      foodDuties: Array.isArray(decoded.foodDuties) ? decoded.foodDuties : [],
+    };
+  } catch {
+    throw new Error("Unable to parse current GitHub file");
+  }
 }
 
 async function getCurrentFile(env: Env): Promise<GitHubContent> {
