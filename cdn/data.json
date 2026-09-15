@@ -1,0 +1,167 @@
+{
+    "players": [
+        {
+            "name": "Ostolani Marco",
+            "birthday": "0001-01-01",
+            "role": "Allenatore"
+        },
+        {
+            "name": "Stoppa Ruben",
+            "birthday": "0001-01-01",
+            "role": "Allenatore"
+        },
+        {
+            "name": "Gobbi Simone",
+            "birthday": "0001-01-01",
+            "role": "Allenatore"
+        },
+        {
+            "name": "Dall'Ara Emanuele",
+            "birthday": "1999-10-04",
+            "role": "Portiere"
+        },
+        {
+            "name": "Simone Bianchi",
+            "birthday": "2007-02-07",
+            "role": "Portiere"
+        },
+        {
+            "name": "Bucci Filippo",
+            "birthday": "2003-08-24",
+            "role": "Difensore"
+        },
+        {
+            "name": "Montesi Marcello",
+            "birthday": "2002-09-30",
+            "role": "Difensore"
+        },
+        {
+            "name": "Diakite Sidiki",
+            "birthday": "1999-09-29",
+            "role": "Difensore"
+        },
+        {
+            "name": "Sintoni Lorenzo",
+            "birthday": "2002-02-04",
+            "role": "Difensore"
+        },
+        {
+            "name": "Diversi Matias",
+            "birthday": "2000-10-01",
+            "role": "Difensore"
+        },
+        {
+            "name": "Canali Giuseppe",
+            "birthday": "2005-12-07",
+            "role": "Difensore"
+        },
+        {
+            "name": "Bucci Federico",
+            "birthday": "2005-12-20",
+            "role": "Difensore"
+        },
+        {
+            "name": "Ceredi Massimiliano",
+            "birthday": "2005-03-26",
+            "role": "Difensore"
+        },
+        {
+            "name": "Acquaviva Diego",
+            "birthday": "2009-06-24",
+            "role": "Difensore"
+        },
+        {
+            "name": "Giordani Luca",
+            "birthday": "1995-04-30",
+            "role": "Centrocampista"
+        },
+        {
+            "name": "Brighi Nicholas",
+            "birthday": "2002-06-13",
+            "role": "Centrocampista"
+        },
+        {
+            "name": "Mazzoli Lucio",
+            "birthday": "1999-07-26",
+            "role": "Centrocampista"
+        },
+        {
+            "name": "Mariotti Enrico",
+            "birthday": "2008-08-12",
+            "role": "Centrocampista"
+        },
+        {
+            "name": "Yabre Siliky",
+            "birthday": "2002-08-20",
+            "role": "Centrocampista"
+        },
+        {
+            "name": "Pianezzola Matteo",
+            "birthday": "2006-05-02",
+            "role": "Centrocampista"
+        },
+        {
+            "name": "Biasini Federico",
+            "birthday": "2007-04-24",
+            "role": "Attaccante"
+        },
+        {
+            "name": "Cattedra Luca",
+            "birthday": "2002-04-08",
+            "role": "Attaccante"
+        },
+        {
+            "name": "Pungelli Giacomo",
+            "birthday": "2004-10-31",
+            "role": "Attaccante"
+        },
+        {
+            "name": "Giornali Mattia",
+            "birthday": "1999-04-17",
+            "role": "Attaccante"
+        },
+        {
+            "name": "Sartini Lorenzo",
+            "birthday": "2000-10-17",
+            "role": "Attaccante"
+        },
+        {
+            "name": "Gabanini Evian",
+            "birthday": "2008-04-22",
+            "role": "Attaccante"
+        },
+        {
+            "name": "Sartini Matteo",
+            "birthday": "2008-01-03",
+            "role": "Attaccante"
+        },
+        {
+            "name": "Arrigoni Alessandro",
+            "birthday": "2008-12-18",
+            "role": "Attaccante"
+        },
+        {
+            "name": "Donati Filippo",
+            "birthday": "2009-07-02",
+            "role": "Attaccante"
+        }
+    ],
+    "fines": [
+        {
+            "playerName": "Montesi Marcello",
+            "reason": "Espulsione",
+            "amount": 50,
+            "date": "2026-09-05",
+            "status": "pending",
+            "notes": "Pugno al nasone del Perticara in amichevole"
+        },
+        {
+            "playerName": "Pianezzola Matteo",
+            "reason": "Assenza senza preavvisio",
+            "amount": 25,
+            "date": "2026-09-05",
+            "status": "pending",
+            "notes": "Dormita senza avvisare"
+        }
+    ]
+}
