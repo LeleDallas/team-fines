@@ -23,6 +23,10 @@ type AppData = {
   foodDuties: unknown[];
 };
 
+type IncomingData = Partial<AppData> & {
+  foodDutiesChanged?: boolean;
+};
+
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     if (request.method === "OPTIONS") {
@@ -154,7 +158,7 @@ function toBase64Url(bytes: Uint8Array): string {
 }
 
 async function readData(request: Request, current: GitHubContent): Promise<AppData> {
-  const data = (await request.json()) as Partial<AppData>;
+  const data = (await request.json()) as IncomingData;
 
   if (!Array.isArray(data.players) || !Array.isArray(data.fines)) {
     throw new Error("Invalid data shape");
@@ -165,7 +169,10 @@ async function readData(request: Request, current: GitHubContent): Promise<AppDa
   return {
     players: data.players,
     fines: data.fines,
-    foodDuties: Array.isArray(data.foodDuties) ? data.foodDuties : currentData.foodDuties,
+    foodDuties:
+      data.foodDutiesChanged === true && Array.isArray(data.foodDuties)
+        ? data.foodDuties
+        : currentData.foodDuties,
   };
 }
 

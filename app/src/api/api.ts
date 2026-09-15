@@ -67,7 +67,7 @@ export async function uploadData(
       Authorization: `Bearer ${adminToken}`,
     },
     credentials: "include",
-    body: JSON.stringify(data),
+    body: JSON.stringify({ ...data, foodDutiesChanged: true }),
   });
 
   if (!response.ok) {
