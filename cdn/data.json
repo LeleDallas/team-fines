@@ -1,5 +1,4 @@
 {
-  "foodDuties": [],
   "players": [
     {
       "name": "Ostolani Marco",
@@ -163,6 +162,21 @@
       "date": "2026-09-05",
       "status": "paid",
       "notes": "Dormita senza avvisare"
+    }
+  ],
+  "foodDuties": [
+    {
+      "date": "2026-09-15",
+      "playerNames": [
+        "Stoppa Ruben"
+      ]
+    },
+    {
+      "date": "2026-09-08",
+      "playerNames": [
+        "Donati Filippo",
+        "Mariotti Enrico"
+      ]
     }
   ]
 }
