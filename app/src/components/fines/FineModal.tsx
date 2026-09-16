@@ -2,6 +2,18 @@ import { useState } from "react";
 import type { Fine, Player } from "../../types";
 import { Modal } from "../ui/Modal";
 
+const regulationOptions = [
+  { id: "divisa-gare", label: "Divisa non rispettata (gare ufficiali)", reason: "Divisa non rispettata", amount: 10 },
+  { id: "divisa-allenamenti", label: "Divisa non rispettata (allenamenti)", reason: "Divisa non rispettata", amount: 5 },
+  { id: "ritardo-partite", label: "Ritardo partite", reason: "Ritardo partite", amount: 25 },
+  { id: "ritardo-allenamenti", label: "Ritardo allenamenti", reason: "Ritardo allenamenti", amount: 15 },
+  { id: "assenza-allenamenti", label: "Assenza Martedì", reason: "Assenza Martedì", amount: 5 },
+  { id: "ammonizione", label: "Ammonizione", reason: "Ammonizione", amount: 25 },
+  { id: "espulsione", label: "Espulsione", reason: "Espulsione", amount: 50 },
+  { id: "fumare-area-tecnica", label: "Fumo in area tecnica", reason: "Fumo in area tecnica", amount: 5 },
+  { id: "telefono-spogliatoio", label: "Uso del cellulare in spogliatoio", reason: "Uso del cellulare in spogliatoio", amount: 15 },
+] as const;
+
 type Props = {
   players: Player[];
   fine: Fine | null;
@@ -21,6 +33,36 @@ export function FineModal({ players, fine, onClose, onSave }: Props) {
   const [status, setStatus] = useState<Fine["status"]>(fine?.status ?? "pending");
 
   const [notes, setNotes] = useState(fine?.notes ?? "");
+
+  const [presetId, setPresetId] = useState(() => {
+    if (!fine) {
+      return "";
+    }
+
+    const match = regulationOptions.find(
+      (option) => option.reason === fine.reason || option.label === fine.reason,
+    );
+
+    return match?.id ?? "";
+  });
+
+  const handlePresetChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedId = event.target.value;
+    setPresetId(selectedId);
+
+    if (!selectedId) {
+      return;
+    }
+
+    const selectedOption = regulationOptions.find((option) => option.id === selectedId);
+
+    if (!selectedOption) {
+      return;
+    }
+
+    setReason(selectedOption.reason);
+    setAmount(String(selectedOption.amount));
+  };
 
   const submit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -57,11 +99,29 @@ export function FineModal({ players, fine, onClose, onSave }: Props) {
 
         <div className="form-row">
           <label>
+            Causa del regolamento
+            <select value={presetId} onChange={handlePresetChange}>
+              <option value=""> Nessuna causa predefinita </option>
+
+              {regulationOptions.map((option) => (
+                <option key={option.id} value={option.id}>
+                  {option.label} · € {option.amount.toFixed(2).replace(".", ",")}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+
+        <div className="form-row">
+          <label>
             Motivo
             <input
               required
               value={reason}
-              onChange={(event) => setReason(event.target.value)}
+              onChange={(event) => {
+                setReason(event.target.value);
+                setPresetId("");
+              }}
               placeholder="Es. Ritardo allenamento"
             />
           </label>
@@ -74,7 +134,10 @@ export function FineModal({ players, fine, onClose, onSave }: Props) {
               min="0.01"
               step="0.01"
               value={amount}
-              onChange={(event) => setAmount(event.target.value)}
+              onChange={(event) => {
+                setAmount(event.target.value);
+                setPresetId("");
+              }}
             />
           </label>
         </div>
