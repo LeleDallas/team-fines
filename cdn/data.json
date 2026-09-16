@@ -148,6 +148,14 @@
   ],
   "fines": [
     {
+      "playerName": "Gobbi Simone",
+      "reason": "Ammonizione",
+      "amount": 50,
+      "date": "2026-09-16",
+      "status": "pending",
+      "notes": "Doppio perché allenatore"
+    },
+    {
       "playerName": "Biasini Federico",
       "reason": "Assenza Martedì",
       "amount": 5,
