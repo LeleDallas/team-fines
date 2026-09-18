@@ -148,6 +148,14 @@
   ],
   "fines": [
     {
+      "playerName": "Ostolani Marco",
+      "reason": "Suoneria telefono durante l’allenamento",
+      "amount": 30,
+      "date": "2026-09-18",
+      "status": "pending",
+      "notes": ""
+    },
+    {
       "playerName": "Gobbi Simone",
       "reason": "Ammonizione",
       "amount": 50,
