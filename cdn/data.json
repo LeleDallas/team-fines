@@ -148,6 +148,30 @@
   ],
   "fines": [
     {
+      "playerName": "Ceredi Massimiliano",
+      "reason": "Ammonizione",
+      "amount": 25,
+      "date": "2026-09-20",
+      "status": "pending",
+      "notes": "Ammonizione a morciano"
+    },
+    {
+      "playerName": "Giordani Luca",
+      "reason": "Ammonizione",
+      "amount": 25,
+      "date": "2026-09-20",
+      "status": "pending",
+      "notes": "Ammonizione per protesta a Morciani"
+    },
+    {
+      "playerName": "Ostolani Marco",
+      "reason": "Ammonizione",
+      "amount": 50,
+      "date": "2026-09-20",
+      "status": "pending",
+      "notes": "Ammonizione a morciano, doppia perché allenatore"
+    },
+    {
       "playerName": "Ostolani Marco",
       "reason": "Suoneria telefono durante l’allenamento",
       "amount": 30,
