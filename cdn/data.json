@@ -152,23 +152,15 @@
       "reason": "Ammonizione",
       "amount": 25,
       "date": "2026-09-20",
-      "status": "pending",
+      "status": "paid",
       "notes": "Ammonizione a morciano"
-    },
-    {
-      "playerName": "Giordani Luca",
-      "reason": "Ammonizione",
-      "amount": 25,
-      "date": "2026-09-20",
-      "status": "pending",
-      "notes": "Ammonizione per protesta a Morciani"
     },
     {
       "playerName": "Ostolani Marco",
       "reason": "Ammonizione",
       "amount": 50,
       "date": "2026-09-20",
-      "status": "pending",
+      "status": "paid",
       "notes": "Ammonizione a morciano, doppia perché allenatore"
     },
     {
@@ -176,7 +168,7 @@
       "reason": "Suoneria telefono durante l’allenamento",
       "amount": 30,
       "date": "2026-09-18",
-      "status": "pending",
+      "status": "paid",
       "notes": ""
     },
     {
@@ -192,7 +184,7 @@
       "reason": "Assenza Martedì",
       "amount": 5,
       "date": "2026-09-08",
-      "status": "pending",
+      "status": "paid",
       "notes": ""
     },
     {
