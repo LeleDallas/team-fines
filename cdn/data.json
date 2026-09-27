@@ -148,6 +148,30 @@
   ],
   "fines": [
     {
+      "playerName": "Acquaviva Diego",
+      "reason": "Ritardo partite",
+      "amount": 20,
+      "date": "2026-09-27",
+      "status": "pending",
+      "notes": "Ritardo capanni"
+    },
+    {
+      "playerName": "Biasini Federico",
+      "reason": "Ritardo partite",
+      "amount": 20,
+      "date": "2026-09-27",
+      "status": "pending",
+      "notes": "Ritardo capanni"
+    },
+    {
+      "playerName": "Diakite Sidiki",
+      "reason": "Ritardo partite",
+      "amount": 20,
+      "date": "2026-09-27",
+      "status": "pending",
+      "notes": "Ritardo capanni"
+    },
+    {
       "playerName": "Ceredi Massimiliano",
       "reason": "Ammonizione",
       "amount": 25,
