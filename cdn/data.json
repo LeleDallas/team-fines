@@ -148,6 +148,14 @@
   ],
   "fines": [
     {
+      "playerName": "Giordani Luca",
+      "reason": "Ammonizione",
+      "amount": 25,
+      "date": "2026-10-07",
+      "status": "pending",
+      "notes": "[Coppa-Santermete] Ammonizione per proteste chiedendo l'espulsione (meritata) non data al giocatore avversario"
+    },
+    {
       "playerName": "Pungelli Giacomo",
       "reason": "Ammonizione",
       "amount": 25,
@@ -160,7 +168,7 @@
       "reason": "Ritardo partite",
       "amount": 20,
       "date": "2026-09-27",
-      "status": "pending",
+      "status": "paid",
       "notes": "Ritardo capanni"
     },
     {
