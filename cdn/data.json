@@ -148,6 +148,38 @@
   ],
   "fines": [
     {
+      "playerName": "Yabre Siliky",
+      "reason": "Ritardo partite",
+      "amount": 25,
+      "date": "2026-10-11",
+      "status": "pending",
+      "notes": "[Cattolica] Ritardo al ritrovo di qualche minuto"
+    },
+    {
+      "playerName": "Ceredi Massimiliano",
+      "reason": "Ammonizione",
+      "amount": 25,
+      "date": "2026-10-11",
+      "status": "pending",
+      "notes": "[Cattolica] Protesta con l'arbitro per un fallo fischiato"
+    },
+    {
+      "playerName": "Ceredi Massimiliano",
+      "reason": "Ammonizione",
+      "amount": 25,
+      "date": "2026-10-07",
+      "status": "pending",
+      "notes": "[Sant'ermete ] Fallo di reazione "
+    },
+    {
+      "playerName": "Diakite Sidiki",
+      "reason": "Espulsione",
+      "amount": 50,
+      "date": "2026-10-04",
+      "status": "pending",
+      "notes": "San bartolo"
+    },
+    {
       "playerName": "Giordani Luca",
       "reason": "Ammonizione",
       "amount": 25,
@@ -177,7 +209,7 @@
       "amount": 20,
       "date": "2026-09-27",
       "status": "pending",
-      "notes": "Ritardo capanni"
+      "notes": "Ritardo capanni\nEdit: 5€ da saldare da Catte, Cana, Tata e Barto in quanto han mangiato mentre la squadra si allenava"
     },
     {
       "playerName": "Diakite Sidiki",
