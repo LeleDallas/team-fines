@@ -158,6 +158,14 @@
   ],
   "fines": [
     {
+      "playerName": "Stoppa Ruben",
+      "reason": "Spallonata",
+      "amount": 20,
+      "date": "2026-09-23",
+      "status": "paid",
+      "notes": "Spallonata di stizza in faccia al povero Giordani"
+    },
+    {
       "playerName": "Cattedra Luca",
       "reason": "Mancato rispetto delle regole",
       "amount": 5,
