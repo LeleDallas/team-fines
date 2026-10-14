@@ -144,9 +144,51 @@
       "name": "Donati Filippo",
       "birthday": "2009-07-02",
       "role": "Attaccante"
+    },
+    {
+      "name": "Tarlazzi Matteo",
+      "birthday": "2007-07-23",
+      "role": "Portiere"
+    },
+    {
+      "name": "Bartolini Federico",
+      "birthday": "2010-03-02",
+      "role": "Giocatore"
     }
   ],
   "fines": [
+    {
+      "playerName": "Cattedra Luca",
+      "reason": "Mancato rispetto delle regole",
+      "amount": 5,
+      "date": "2026-09-30",
+      "status": "pending",
+      "notes": "Consuma il cibo prima dell'arrivo di tutta la squadra nello spogliatoio"
+    },
+    {
+      "playerName": "Canali Giuseppe",
+      "reason": "Mancato rispetto delle regole",
+      "amount": 5,
+      "date": "2026-09-30",
+      "status": "pending",
+      "notes": "Consuma il cibo prima dell'arrivo di tutta la squadra nello spogliatoio"
+    },
+    {
+      "playerName": "Tarlazzi Matteo",
+      "reason": "Mancato rispetto delle regole",
+      "amount": 5,
+      "date": "2026-09-30",
+      "status": "pending",
+      "notes": "Consuma il cibo prima dell'arrivo di tutta la squadra nello spogliatoio"
+    },
+    {
+      "playerName": "Bartolini Federico",
+      "reason": "Mancato rispetto delle regole",
+      "amount": 5,
+      "date": "2026-09-30",
+      "status": "pending",
+      "notes": "Consuma il cibo prima dell'arrivo di tutta la squadra nello spogliatoio"
+    },
     {
       "playerName": "Yabre Siliky",
       "reason": "Ritardo partite",
@@ -198,9 +240,9 @@
     {
       "playerName": "Biasini Federico",
       "reason": "Ritardo partite",
-      "amount": 20,
+      "amount": 5,
       "date": "2026-09-27",
-      "status": "pending",
+      "status": "paid",
       "notes": "Ritardo capanni\nEdit: 5€ da saldare da Catte, Cana, Tata e Barto in quanto han mangiato mentre la squadra si allenava"
     },
     {
@@ -292,6 +334,13 @@
       "date": "2026-09-29",
       "playerNames": [
         "Montesi Marcello"
+      ]
+    },
+    {
+      "date": "2026-10-20",
+      "playerNames": [
+        "Dall'Ara Emanuele",
+        "Diakite Sidiki"
       ]
     }
   ]
