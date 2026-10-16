@@ -158,6 +158,14 @@
   ],
   "fines": [
     {
+      "playerName": "Gobbi Simone",
+      "reason": "Ammonizione",
+      "amount": 50,
+      "date": "2026-10-11",
+      "status": "pending",
+      "notes": "[Cattolica] Ammonizione per protesta, doppia perché mister"
+    },
+    {
       "playerName": "Stoppa Ruben",
       "reason": "Spallonata",
       "amount": 20,
