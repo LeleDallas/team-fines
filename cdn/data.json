@@ -158,6 +158,14 @@
   ],
   "fines": [
     {
+      "playerName": "Montesi Marcello",
+      "reason": "Espulsione",
+      "amount": 50,
+      "date": "2026-10-18",
+      "status": "pending",
+      "notes": "[Victoria] Rosso a fine partita per proteste verso il direttore di gara"
+    },
+    {
       "playerName": "Gobbi Simone",
       "reason": "Ammonizione",
       "amount": 50,
@@ -178,7 +186,7 @@
       "reason": "Mancato rispetto delle regole",
       "amount": 5,
       "date": "2026-09-30",
-      "status": "pending",
+      "status": "paid",
       "notes": "Consuma il cibo prima dell'arrivo di tutta la squadra nello spogliatoio"
     },
     {
@@ -186,7 +194,7 @@
       "reason": "Mancato rispetto delle regole",
       "amount": 5,
       "date": "2026-09-30",
-      "status": "pending",
+      "status": "paid",
       "notes": "Consuma il cibo prima dell'arrivo di tutta la squadra nello spogliatoio"
     },
     {
@@ -226,7 +234,7 @@
       "reason": "Ammonizione",
       "amount": 25,
       "date": "2026-10-07",
-      "status": "pending",
+      "status": "paid",
       "notes": "[Sant'ermete ] Fallo di reazione "
     },
     {
